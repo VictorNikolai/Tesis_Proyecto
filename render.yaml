@@ -1,0 +1,34 @@
+# Plano de Render: New > Blueprint > este repositorio. Crea el servicio solo.
+services:
+  - type: web
+    name: deslizamientos-laconvencion
+    runtime: python
+    plan: free
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT --workers 1
+    healthCheckPath: /salud
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.8"
+      # Pon aquí la URL exacta de tu Space (https://usuario-espacio.hf.space).
+      # Con * cualquier página puede llamar a la API; sirve solo para probar.
+      - key: ORIGENES_PERMITIDOS
+        value: "*"
+      # Si los .onnx llegan como punteros de Git LFS, se bajan de aquí.
+      # Formato: https://media.githubusercontent.com/media/USUARIO/REPO/main/modelos
+      - key: URL_PESOS_BASE
+        value: ""
+      # 512 MB de RAM en el plan gratuito: un modelo cargado a la vez.
+      - key: UN_MODELO_A_LA_VEZ
+        value: "1"
+      - key: HILOS_ONNX
+        value: "1"
+      # El alcance de la tesis: fuera de La Convención se responde 403.
+      - key: AMBITO
+        value: "bloquear"
+      - key: MAX_LADO_KM
+        value: "12"
+      # A 1 no baja imágenes: genera un área sintética. Para comprobar el despliegue.
+      - key: MODO_FALSO
+        value: "0"

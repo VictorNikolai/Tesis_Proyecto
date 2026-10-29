@@ -1,0 +1,105 @@
+{
+ "nombre": "deeplabv3plus",
+ "etiqueta": "DeepLabV3+ · resnet34",
+ "autor": "Huarcaya Pumacayo, V. N.",
+ "onnx": "deeplabv3plus.onnx",
+ "canales": [
+  "B02",
+  "B03",
+  "B04",
+  "B08",
+  "NDVI",
+  "NDWI"
+ ],
+ "lado_px": 128,
+ "normalizacion": {
+  "metodo": "percentil",
+  "percentiles": [
+   2,
+   98
+  ],
+  "canales": [
+   "B02",
+   "B03",
+   "B04",
+   "B08"
+  ],
+  "por_canal": {
+   "B02": {
+    "lo": 0.7603394389152527,
+    "hi": 1.6722617149353027
+   },
+   "B03": {
+    "lo": 0.5878661274909973,
+    "hi": 1.9625684022903442
+   },
+   "B04": {
+    "lo": 0.4649878740310669,
+    "hi": 3.054992914199829
+   },
+   "B08": {
+    "lo": 0.06799489259719849,
+    "hi": 2.038301467895508
+   }
+  },
+  "nota": "lo y hi en unidades de Landslide4Sense; los índices NDVI y NDWI se calculan sobre esas unidades y no se normalizan"
+ },
+ "salida": "sigmoide",
+ "umbral": 0.6,
+ "entrenamiento": {
+  "firma": "23c2a9ca2368",
+  "arquitectura": "deeplabv3plus",
+  "codificador": "resnet34",
+  "dataset": "landslide4sense_TrainData_zenodo_10463239",
+  "epoca": 89,
+  "iou_validacion": 0.5178524641254554,
+  "prueba": {
+   "iou": 0.4988174149336816,
+   "f1": 0.6656146505420113,
+   "precision": 0.5734933034867973,
+   "recall": 0.7929949796375441
+  },
+  "particion": "grupos espaciales de TrainData (Fase 4)"
+ },
+ "exportacion": {
+  "opset": 17,
+  "paridad_max_logit": 9.5367431640625e-06,
+  "pesos": {
+   "capas_conv": 51,
+   "capas_en_inicializacion": 0,
+   "fraccion": 0.0,
+   "cabeza_sin_entrenar": false,
+   "sin_entrenar": false
+  },
+  "sha256_onnx": "01dec5ea6109e03a8721c84aa4b93cc30ac095fe2295348f037c04d839d1ed39"
+ },
+ "verificacion_l4s": {
+  "fecha": "2026-10-29",
+  "umbral": 0.6,
+  "dataset": "ibm-nasa-geospatial/Landslide4sense (Hugging Face)",
+  "validation": {
+   "parches": 245,
+   "iou": 0.3242,
+   "f1": 0.4896,
+   "precision": 0.5482,
+   "recall": 0.4424,
+   "iou_medio_parches_con_deslizamiento": 0.3277,
+   "tp": 30410,
+   "fp": 25066,
+   "fn": 38335,
+   "tn": 3920269
+  },
+  "test": {
+   "parches": 800,
+   "iou": 0.357,
+   "f1": 0.5261,
+   "precision": 0.527,
+   "recall": 0.5252,
+   "iou_medio_parches_con_deslizamiento": 0.3356,
+   "tp": 130010,
+   "fp": 116669,
+   "fn": 117521,
+   "tn": 12743000
+  }
+ }
+}

@@ -1,0 +1,19 @@
+# Versiones probadas juntas. Render instala esto con Python 3.12.
+fastapi==0.150.0
+uvicorn[standard]==0.53.0
+pydantic==2.13.5
+onnxruntime==1.29.0
+onnx==1.23.2
+numpy==2.5.2
+pillow==12.3.0
+httpx==0.28.1
+pyproj==3.8.0
+rasterio==1.5.2
+shapely==2.2.0
+affine==3.0.1
+cubo==2026.2.0
+xarray==2026.9.0
+stackstac==0.5.1
+pystac-client==0.9.1
+planetary-computer==1.0.0
+dask==2026.8.0
